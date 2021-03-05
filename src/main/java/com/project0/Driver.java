@@ -15,6 +15,7 @@ public class Driver {
         boolean isUser = false;
         DisplayMenu menu = new DisplayMenu();
 
+
         do{
             System.out.println("Select an option: ");
             System.out.println("1: Log In");
@@ -28,6 +29,13 @@ public class Driver {
                     System.out.println("Logging in");
                     menuLoop = false;
                     isUser = menu.Login(scan);
+                    if(isUser) {
+                        System.out.println("You are sign in as an Employee ");
+                        menu.EmployeeMenu(scan);
+                    }
+                    else {
+                        System.out.println("You are sign in as a Customer");
+                    }
                     break;
                 case 2:
                     System.out.println("Signing up");
@@ -43,13 +51,11 @@ public class Driver {
 
         }while(menuLoop);
 
-        System.out.println("User sign in: " + isUser);
-
-        CarDOA allCars = new CarDOA();
-        allCars.getAllCars();
 
 
 
+        //CarDOA allCars = new CarDOA();
+        //allCars.getAllCars();
 
 
 
@@ -57,13 +63,15 @@ public class Driver {
 
 
 
-    /*
 
+
+
+
+/*
         System.out.println("Adding user Test");
-        System.out.println("Add user ID: ");
-        int userid = scan.nextInt();
         System.out.println("Add role: ");
         int role = scan.nextInt();
+        scan.nextLine();
         System.out.println("First Name: ");
         String fName = scan.nextLine();
         System.out.println("Last Name: ");
@@ -73,20 +81,22 @@ public class Driver {
         System.out.println("Password; ");
         String password = scan.nextLine();
 
+        System.out.println(role + " " +  fName + " " +  lName  + " " + username + " " + password);
+
         UserDOA exampleUser = new UserDOA();
-        exampleUser.AddUserDAO(userid,role,fName,lName,username,password);
+        //exampleUser.AddUserDAO(role,fName,lName,username,password);
         //exampleUser.AddUserDAO(103,1,"Victor","Reyes","vic123", "pass");
         System.out.println("Check");
-        /*
+*/
 
-        System.out.println("Delete User with Username: ");
-        String name = scan.nextLine();
-        System.out.println(name);
+       // System.out.println("Delete User with Username: ");
+       // String name = scan.nextLine();
+       // System.out.println(name);
 
-        UserDOA exampleUser = new UserDOA();
-        exampleUser.deleteUserDAO(name);
+        //UserDOA exampleUser1 = new UserDOA();
+       //exampleUser1.deleteUserDAO(name);
 
-         */
+
         /*
         do{
             System.out.println("How can we help?");

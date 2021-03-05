@@ -14,7 +14,7 @@ public class UserDOA {
 
     public boolean deleteUserDAO(String Name){
         try(Connection connection = UIutility.getConnection()){
-            String sqlQuery = "DELETE FROM Users WHERE UserName = ?";
+            String sqlQuery = "DELETE FROM users WHERE UserName = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1,Name);
             if(statement.executeUpdate() < 1) {
@@ -28,26 +28,24 @@ public class UserDOA {
         return true;
     }
 
-    public boolean AddUserDAO(int userID, int role, String firstName, String lastName, String username, String password){
+    public boolean AddUserDAO(int role, String firstName, String lastName, String username, String password){
 
         try (Connection connection = UIutility.getConnection()) {
             connection.setAutoCommit(false);
 
-            String sqlQuery = "INSERT INTO users "
+            String sqlQuery = "INSERT INTO users (roleID, FName, LName, UserName, password) "
                     + "VALUES "
-                    + "(?, ?, ?, ? ,? ,?)";
+                    + "(?, ?, ?, ? ,? )";
 
             PreparedStatement pstmt = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
-
-            pstmt.setInt(1, userID);
-            pstmt.setInt(2, role );
-            pstmt.setString(3, firstName);
-            pstmt.setString(4, lastName);
-            pstmt.setString(5, username);
-            pstmt.setString(6, password);
+            pstmt.setInt(1, role );
+            pstmt.setString(2, firstName);
+            pstmt.setString(3, lastName);
+            pstmt.setString(4, username);
+            pstmt.setString(5, password);
 
             if (pstmt.executeUpdate() != 1) {
-                throw new SQLException("Inserting Employee failed, no rows were affected");
+                throw new SQLException("Inserting User failed, no rows were affected");
             }
 
             int autoId = 0;
@@ -55,7 +53,7 @@ public class UserDOA {
             if (generatedKeys.next()) {
                 autoId = generatedKeys.getInt(1);
             } else {
-                throw new SQLException("Inserting Employee failed, no ID generated");
+                throw new SQLException("Inserting User failed, no ID generated");
             }
 
             connection.commit();
