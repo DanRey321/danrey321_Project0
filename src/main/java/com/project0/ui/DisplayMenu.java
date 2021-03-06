@@ -52,22 +52,22 @@ public class DisplayMenu extends AbstractMenu {
                 case 1:
                     System.out.println("Add");
                     addCarMenu(scan);
-                    loop = false;
+                    //loop = false;
                     break;
                 case 2:
                     System.out.println("Remove");
                     carID = scan.nextInt();
                     scan.nextLine();
-                    //cars.removeCar(carID);
-                    loop = false;
+                    cars.removeCarDOA(carID);
+                    //loop = false;
                     break;
                 case 3:
                     System.out.println("Offers");
-                    loop = false;
+                    //loop = false;
                     break;
                 case 4:
                     System.out.println("Payments");
-                    loop = false;
+                    //loop = false;
                     break;
                 case 5:
                     System.out.println("exit");
@@ -98,7 +98,7 @@ public class DisplayMenu extends AbstractMenu {
         scan.nextLine();
 
         CarDOA carAdd = new CarDOA();
-        //carAdd.AddCarDAO(ownerID,make,model,year,cost);
+        carAdd.addCar(ownerID,make,model,year,cost);
 
 
 

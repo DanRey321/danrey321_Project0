@@ -5,10 +5,7 @@ import com.project0.Util.CarArrayList;
 import com.project0.model.Cars;
 import com.project0.ui.UIutility;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class CarDOA {
 
@@ -43,6 +40,52 @@ public class CarDOA {
                 e.printStackTrace();
             }
         return carsList;
+    }
+
+    public Cars addCar(int ownerID, String make, String model, String year, double cost){
+
+        String sqlQuery = "insert into cars (OwnerID, Make, Model, Year, cost, Balance)"
+                + "values (?, ?, ?, ?, ?, ?)";
+
+        try(Connection connection = UIutility.getConnection()){
+            connection.setAutoCommit(false);
+            PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
+            pstmt.setInt(1, ownerID);
+            pstmt.setString(2, make);
+            pstmt.setString(3, model);
+            pstmt.setString(4, year);
+            pstmt.setDouble(5, cost);
+            pstmt.setDouble(6, cost);
+
+            if (pstmt.executeUpdate() != 1) {
+                throw new SQLException("Inserting Car failed, no rows were affected");
+            }
+            connection.commit();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public boolean removeCarDOA(int carID) {
+        try (Connection connection = UIutility.getConnection()) {
+            String sqlQuery = "DELETE FROM cars WHERE carid = ?";
+
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+
+            statement.setInt(1, carID);
+
+            if (statement.executeUpdate() < 1) {
+                throw new SQLException("Deleting failed, no rows affected");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+
     }
 
 }
