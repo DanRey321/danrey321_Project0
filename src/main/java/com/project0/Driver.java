@@ -12,7 +12,7 @@ public class Driver {
         Scanner scan = new Scanner(System.in);
         boolean menuLoop = true;
         int choice;
-        boolean isUser = false;
+        int isUser = 0;
         DisplayMenu menu = new DisplayMenu();
 
 
@@ -29,12 +29,15 @@ public class Driver {
                     System.out.println("Logging in");
                     menuLoop = false;
                     isUser = menu.Login(scan);
-                    if(isUser) {
+                    if(isUser == 1) {
                         System.out.println("You are sign in as an Employee ");
                         menu.EmployeeMenu(scan);
                     }
-                    else {
+                    else if(isUser >= 2){
                         System.out.println("You are sign in as a Customer");
+                        menu.CustomerMenu(scan);
+                    }else{
+                        System.out.println("Not a user! ");
                     }
                     break;
                 case 2:

@@ -11,12 +11,12 @@ import java.sql.*;
 
 public class FinanceDOA {
 
-    /*
-    public SimpleArrayList<Offers> ViewOffers(){
 
-        String sqlQuery = "SELECT * FROM cars";
+    public CarArrayList<Offers> ViewOffers(){
 
-        SimpleArrayList<Offers> offerList = new SimpleArrayList<>();
+        String sqlQuery = "SELECT * FROM offers";
+
+        CarArrayList<Offers> offerList = new CarArrayList<>();
 
         try(Connection connection = UIutility.getConnection()){
             Statement stmt = connection.createStatement();
@@ -28,14 +28,14 @@ public class FinanceDOA {
                 int carID = rs.getInt(3);
                 double offer = rs.getDouble(4);
 
+                Offers offers = new Offers(offerID, userid, carID, offer);
+                offerList.addOffer(offers);
+                //arsList.add(cars);
 
-
-                //Cars cars = new Cars(carID, make, model, year, cost);
-                T t = new T(offerID, userid, carID, offer);
-                offerList.add(t);
             }
-            for(int i = 0; i < offerList.size(); i++){
-                System.out.println(offerList.get(i).getMake() + " - " + offerList.get(i).getModel());
+            for(int i = 0; i < offerList.sizeOfOfferList(); i++){
+                System.out.println(offerList.getOffer(i).getOfferID() + " - " + offerList.getOffer(i).getCarID() + " - "
+                        + offerList.getOffer(i).getOffer() );
 
 
             }
@@ -47,7 +47,44 @@ public class FinanceDOA {
         return offerList;
     }
 
-     */
+    public boolean makeOfferDOA(int userID, int carID, double offer){
+
+        try (Connection connection = UIutility.getConnection()) {
+            connection.setAutoCommit(false);
+
+            String sqlQuery = "insert into offers (userID, CarID, Offer)"
+                    + "VALUES "
+                    + "(?, ?, ?)";
+
+            PreparedStatement pstmt = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, userID );
+            pstmt.setInt(2, carID);
+            pstmt.setDouble(3, offer);
+
+
+            if (pstmt.executeUpdate() != 1) {
+                throw new SQLException("Inserting User failed, no rows were affected");
+            }
+
+            int autoId = 0;
+            ResultSet generatedKeys = pstmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                autoId = generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("Inserting User failed, no ID generated");
+            }
+
+            connection.commit();
+
+            //return new Employee(autoId, EmployeeName, role.getId() );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
 
 
 

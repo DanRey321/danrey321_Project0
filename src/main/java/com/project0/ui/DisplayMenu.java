@@ -1,7 +1,10 @@
 package com.project0.ui;
 import com.project0.Dao.CarDOA;
+import com.project0.Dao.FinanceDOA;
 import com.project0.Dao.UserDOA;
 import com.project0.model.Cars;
+import com.project0.model.Offers;
+import com.project0.model.User;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -14,7 +17,7 @@ public class DisplayMenu extends AbstractMenu {
     String username = "";
 
     @Override
-    public boolean Login(Scanner scan){
+    public int Login(Scanner scan){
         System.out.println("Login Menu");
         System.out.println("Username: ");
         username = scan.nextLine();
@@ -27,13 +30,14 @@ public class DisplayMenu extends AbstractMenu {
         }catch(SQLException e ){
             e.printStackTrace();
         }
-    return false;
+    return 0;
     }
 
     public void EmployeeMenu(Scanner scan){
 
         boolean loop = true;
         CarDOA cars = new CarDOA();
+        FinanceDOA offers = new FinanceDOA();
         int carID;
 
         do{
@@ -63,10 +67,62 @@ public class DisplayMenu extends AbstractMenu {
                     break;
                 case 3:
                     System.out.println("Offers");
+                    offers.ViewOffers();
                     //loop = false;
                     break;
                 case 4:
                     System.out.println("Payments");
+                    //loop = false;
+                    break;
+                case 5:
+                    System.out.println("exit");
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Wrong choice");
+
+
+            }
+        }while(loop);
+
+    }
+
+    public void CustomerMenu(Scanner scan){
+
+        boolean loop = true;
+        CarDOA cars = new CarDOA();
+        FinanceDOA offers = new FinanceDOA();
+        int carID;
+
+        do{
+            System.out.println("Hello :" + username + "!");
+            System.out.println("What would you like to do: ");
+            System.out.println("1: View Cars");
+            System.out.println("2: Make an Offer");
+            System.out.println("3: My Cars");
+            System.out.println("4: Balance");
+            System.out.println("5: Exit");
+
+            int choice = scan.nextInt();
+            scan.nextLine();
+
+            switch(choice) {
+                case 1:
+                    System.out.println("Car Selection");
+                    cars.getAllCars();
+                    //loop = false;
+                    break;
+                case 2:
+                    System.out.println("Offer");
+
+                    //loop = false;
+                    break;
+                case 3:
+                    System.out.println("My Cars");
+                    //loop = false;
+                    break;
+                case 4:
+                    System.out.println("Finance");
                     //loop = false;
                     break;
                 case 5:
@@ -101,6 +157,22 @@ public class DisplayMenu extends AbstractMenu {
         carAdd.addCar(ownerID,make,model,year,cost);
 
 
+
+        return null;
+    }
+
+    public Offers makeOfferMenu(Scanner scan, User user){
+        System.out.println("Make Offer: ");
+        System.out.println("");
+        System.out.println("Enter car ID:");
+        int carId = scan.nextInt();
+        scan.nextLine();
+        System.out.println("Make Offer: ");
+        double offerAmount = scan.nextDouble();
+        scan.nextLine();
+
+        FinanceDOA offer = new FinanceDOA();
+        //offer.makeOfferDOA()
 
         return null;
     }

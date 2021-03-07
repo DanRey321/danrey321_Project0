@@ -5,5 +5,5 @@ import java.util.Scanner;
 public abstract class AbstractMenu {
     protected UIutility ui;
 
-    public abstract boolean Login(Scanner scan);
+    public abstract int Login(Scanner scan);
 }

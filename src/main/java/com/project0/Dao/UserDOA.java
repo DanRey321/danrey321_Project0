@@ -66,21 +66,39 @@ public class UserDOA {
         return false;
     }
 
-    public boolean LoginDOA(String username, String password) throws SQLException{
+    public int LoginDOA(String username, String password) throws SQLException{
         Connection connection = UIutility.getConnection();
-        String sqlQuery = "SELECT password FROM users where username = ?";
+        String sqlQuery = "SELECT password, roleid FROM users where username = ?";
 
         PreparedStatement statement = connection.prepareStatement(sqlQuery);
         statement.setString(1,username);
         ResultSet rs = statement.executeQuery();
         while(rs.next()){
             String databasePassword = rs.getString(1);
+            int roleID = rs.getInt(2);
             if(databasePassword.equals(password)){
-                return true;
+                if(roleID == 1){
+                    return 1; //Returns Employee
+                } else if(roleID > 1){
+                    return 2; //Returns Customer
+                }
+            }else{
+                System.out.println("Not a user");
+
             }
         }
-        return false;
+        return 0;
 
+    }
+
+
+
+    public int AccessLevel(){
+
+
+
+
+        return 0;
     }
 
 

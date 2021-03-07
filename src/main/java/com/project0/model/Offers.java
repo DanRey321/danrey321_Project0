@@ -5,12 +5,12 @@ public class Offers {
     private int offerID;
     private int userID;
     private int carID;
-    private int offer;
+    private double offer;
 
     public Offers() {
     }
 
-    public Offers(int offerID, int userID, int carID, int offer) {
+    public Offers(int offerID, int userID, int carID, double offer) {
         this.offerID = offerID;
         this.userID = userID;
         this.carID = carID;
@@ -41,7 +41,7 @@ public class Offers {
         this.carID = carID;
     }
 
-    public int getOffer() {
+    public double getOffer() {
         return offer;
     }
 
