@@ -47,8 +47,8 @@ public class CarArrayList<C> {
         array = newArray;
     }
     public void addOffer(Offers o){
-        Offers[] newArray = new Offers[array.length + 1];
-        System.arraycopy(array, 0, newArray, 0, array.length);
+        Offers[] newArray = new Offers[Oarray.length + 1];
+        System.arraycopy(Oarray, 0, newArray, 0, Oarray.length);
         // add new element
         newArray[Oarray.length] = o;
         Oarray = newArray;

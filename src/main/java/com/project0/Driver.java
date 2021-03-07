@@ -32,7 +32,7 @@ public class Driver {
                     isUser = menu.Login(scan);
                     if(isUser.getRole() == 1) {
                         System.out.println("You are sign in as an Employee ");
-                        menu.EmployeeMenu(scan);
+                        menu.EmployeeMenu(scan, isUser);
                     }
                     else if(isUser.getRole() >= 2){
                         System.out.println("You are sign in as a Customer");

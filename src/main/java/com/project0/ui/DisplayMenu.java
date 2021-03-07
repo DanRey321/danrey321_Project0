@@ -14,7 +14,8 @@ import java.util.Scanner;
 public class DisplayMenu extends AbstractMenu {
 
     UserDOA user = new UserDOA();
-    User user1 = new User();
+    //User user1 = new User();
+    FinanceDOA offers = new FinanceDOA();
     String username = "";
 
     @Override
@@ -34,7 +35,7 @@ public class DisplayMenu extends AbstractMenu {
     return null;
     }
 
-    public void EmployeeMenu(Scanner scan){
+    public void EmployeeMenu(Scanner scan, User userEM){
 
         boolean loop = true;
         CarDOA cars = new CarDOA();
@@ -48,7 +49,8 @@ public class DisplayMenu extends AbstractMenu {
         System.out.println("2: Remove car");
         System.out.println("3: View offers");
         System.out.println("4: View Payments");
-        System.out.println("5: Exit");
+        System.out.println("5: Accept or Decline Offers");
+        System.out.println("6: Exit");
 
         int choice = scan.nextInt();
         scan.nextLine();
@@ -76,7 +78,15 @@ public class DisplayMenu extends AbstractMenu {
                     //loop = false;
                     break;
                 case 5:
-                    System.out.println("exit");
+                    System.out.println("Accept or Decline Offers");
+                    offers.ViewOffers();
+                    acceptOfferMenu(scan, userEM);
+                    break;
+                case 6:
+                    System.out.println("Temp Test");
+                    //System.out.println("exit");
+                    offers.getOffer(10027);
+                    //System.out.println();
                     loop = false;
                     break;
                 default:
@@ -92,7 +102,7 @@ public class DisplayMenu extends AbstractMenu {
 
         boolean loop = true;
         CarDOA cars = new CarDOA();
-        FinanceDOA offers = new FinanceDOA();
+
         int carID;
 
         do{
@@ -183,28 +193,34 @@ public class DisplayMenu extends AbstractMenu {
         return null;
     }
 
+    public void acceptOfferMenu(Scanner scan, User userO){
+        int offerID;
+        Offers offerA;
+        System.out.println("[A]ccept or [D]ecline Offer?");
+        String AorD = scan.nextLine();
+        if(AorD.equals("a") || AorD.equals("A")){
+            System.out.println("Enter Offer ID");
+            offerID = scan.nextInt();
+            scan.nextLine();
+            offerA = offers.getOffer(offerID);
+            offers.updateOfferStatus(offerID);
+            offers.updateOwner(offerA.getUserID(), offerA.getCarID());
+            offers.deleteRemainingOffers(offerA.getCarID());
+
+        }
+        else if(AorD.equals("d") || AorD.equals("D")){
+            System.out.println("Enter Offer ID");
+            offerID = scan.nextInt();
+            offers.declineOffer(offerID);
+        }
+
+
+        System.out.println();
 
 
 
-    public void MainPage(){
-        System.out.println("How can we help?");
-        System.out.println("1: Look for cars");
-        System.out.println("2: Make an offer");
-        System.out.println("3: Employee Login");
+
     }
 
-    public void ShowRoomPage(){
-        System.out.println("Welcome to the Showroom!!");
-        System.out.println("1: Display available cars ");
-        System.out.println("Return to main Menu");
-    }
-
-    public void UserPage(){
-        System.out.println("Sign/Signup");
-        System.out.println("1: Sign In");
-        System.out.println("2: Sign Up");
-        System.out.println("3: Delete user");
-        System.out.println("Return to main Menu");
-    }
 
 }
