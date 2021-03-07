@@ -24,6 +24,21 @@ public class User {
         //this.email = email;
     }
 
+    public User(int userID, int role, String username, String password) {
+        UserID = userID;
+        this.role = role;
+        this.username = username;
+        this.password = password;
+    }
+
+    public int getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(int userID) {
+        UserID = userID;
+    }
+
     public User(String username) {
         this.username = username;
     }

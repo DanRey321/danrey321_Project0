@@ -2,6 +2,7 @@ package com.project0;
 
 import com.project0.Dao.CarDOA;
 import com.project0.Dao.UserDOA;
+import com.project0.model.User;
 import com.project0.ui.DisplayMenu;
 
 import java.util.Scanner;
@@ -12,7 +13,7 @@ public class Driver {
         Scanner scan = new Scanner(System.in);
         boolean menuLoop = true;
         int choice;
-        int isUser = 0;
+        User isUser = new User();
         DisplayMenu menu = new DisplayMenu();
 
 
@@ -29,13 +30,13 @@ public class Driver {
                     System.out.println("Logging in");
                     menuLoop = false;
                     isUser = menu.Login(scan);
-                    if(isUser == 1) {
+                    if(isUser.getRole() == 1) {
                         System.out.println("You are sign in as an Employee ");
                         menu.EmployeeMenu(scan);
                     }
-                    else if(isUser >= 2){
+                    else if(isUser.getRole() >= 2){
                         System.out.println("You are sign in as a Customer");
-                        menu.CustomerMenu(scan);
+                        menu.CustomerMenu(scan, isUser);
                     }else{
                         System.out.println("Not a user! ");
                     }

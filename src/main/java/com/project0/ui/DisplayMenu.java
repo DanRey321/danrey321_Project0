@@ -14,10 +14,11 @@ import java.util.Scanner;
 public class DisplayMenu extends AbstractMenu {
 
     UserDOA user = new UserDOA();
+    User user1 = new User();
     String username = "";
 
     @Override
-    public int Login(Scanner scan){
+    public User Login(Scanner scan){
         System.out.println("Login Menu");
         System.out.println("Username: ");
         username = scan.nextLine();
@@ -30,7 +31,7 @@ public class DisplayMenu extends AbstractMenu {
         }catch(SQLException e ){
             e.printStackTrace();
         }
-    return 0;
+    return null;
     }
 
     public void EmployeeMenu(Scanner scan){
@@ -87,7 +88,7 @@ public class DisplayMenu extends AbstractMenu {
 
     }
 
-    public void CustomerMenu(Scanner scan){
+    public void CustomerMenu(Scanner scan, User userCM){
 
         boolean loop = true;
         CarDOA cars = new CarDOA();
@@ -114,7 +115,7 @@ public class DisplayMenu extends AbstractMenu {
                     break;
                 case 2:
                     System.out.println("Offer");
-
+                    makeOfferMenu(scan, userCM);
                     //loop = false;
                     break;
                 case 3:
@@ -161,7 +162,9 @@ public class DisplayMenu extends AbstractMenu {
         return null;
     }
 
-    public Offers makeOfferMenu(Scanner scan, User user){
+    public Offers makeOfferMenu(Scanner scan, User userOM){
+
+        //System.out.println("User ID:  ->  " + userOM.getUserID());
         System.out.println("Make Offer: ");
         System.out.println("");
         System.out.println("Enter car ID:");
@@ -171,8 +174,11 @@ public class DisplayMenu extends AbstractMenu {
         double offerAmount = scan.nextDouble();
         scan.nextLine();
 
+
+        System.out.println("UserID:  ->  " + userOM.getUserID());
         FinanceDOA offer = new FinanceDOA();
-        //offer.makeOfferDOA()
+        offer.makeOfferDOA(userOM.getUserID(), carId, offerAmount );
+
 
         return null;
     }

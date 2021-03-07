@@ -47,7 +47,7 @@ public class FinanceDOA {
         return offerList;
     }
 
-    public boolean makeOfferDOA(int userID, int carID, double offer){
+    public boolean makeOfferDOA( int userID, int carID, double offer){
 
         try (Connection connection = UIutility.getConnection()) {
             connection.setAutoCommit(false);
