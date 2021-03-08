@@ -24,7 +24,7 @@ public class CarDOA {
                 int ownerID = rs.getInt(2);
                 String make = rs.getString(3);
                 String model = rs.getString(4);
-                int year = rs.getInt(5);
+                String year = rs.getString(5);
                 double cost = rs.getDouble(6);
                 double balance = rs.getDouble(7);
 
@@ -89,6 +89,43 @@ public class CarDOA {
         return true;
 
     }
+
+    public Cars viewOwnedCars(int ownerID){
+        CarArrayList<Cars> carsList = new CarArrayList<>();
+        String sqlQuery = "select make, model, year from cars where ownerid = ?";
+
+        try(Connection  connection = UIutility.getConnection()){
+            PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
+            pstmt.setInt(1, ownerID);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                String make = rs.getString(1);
+                String model = rs.getString(2);
+                String year = rs.getString(3);
+
+                Cars cars = new Cars( make, model, year);
+                carsList.add(cars);
+            }
+
+            for(int i = 0; i < carsList.size(); i++){
+                System.out.println(carsList.getCar(i).getMake() + " - " + carsList.getCar(i).getModel()
+                        + " - " + carsList.getCar(i).getYear());
+
+
+            }
+
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+
+
+        return null;
+    }
+
+
 
 }
 

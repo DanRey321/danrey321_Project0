@@ -130,6 +130,7 @@ public class DisplayMenu extends AbstractMenu {
                     break;
                 case 3:
                     System.out.println("My Cars");
+                    cars.viewOwnedCars(userCM.getUserID());
                     //loop = false;
                     break;
                 case 4:

@@ -5,33 +5,30 @@ public class Cars {
     private int carID;
     private String make;
     private String model;
-    private int year;
+    private String year;
     private double cost;
-    //private double balance;
 
-    public Cars(int carID, String make, String model, int year, double cost) {
+    public Cars(int carID, String make, String model, String year, double cost) {
         this.carID = carID;
         this.make = make;
         this.model = model;
         this.year = year;
         this.cost = cost;
-        //this.balance = balance;
+
     }
 
     public Cars() {
         this.carID = carID;
-        //this.balance = 0;
         this.cost = 0;
 
     }
 
-    public Cars(String model) {
+    public Cars(String make, String model, String year) {
+        this.make = make;
         this.model = model;
-    }
-
-    public Cars(int year) {
         this.year = year;
     }
+
 
     public int getCarID() {
         return carID;
@@ -57,11 +54,11 @@ public class Cars {
         this.model = model;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
