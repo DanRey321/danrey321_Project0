@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.project0.model.User;
-import com.project0.ui.UIutility;
+import com.project0.Util.jdbcConnection;
 
 
 public class UserDOA {
 
     public boolean deleteUserDAO(String Name){
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
             String sqlQuery = "DELETE FROM users WHERE UserName = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1,Name);
@@ -30,7 +30,7 @@ public class UserDOA {
 
     public boolean AddUserDAO(int role, String firstName, String lastName, String username, String password){
 
-        try (Connection connection = UIutility.getConnection()) {
+        try (Connection connection = jdbcConnection.getConnection()) {
             connection.setAutoCommit(false);
 
             String sqlQuery = "INSERT INTO users (roleID, FName, LName, UserName, password) "
@@ -67,7 +67,7 @@ public class UserDOA {
     }
 
     public User LoginDOA(String username, String password) throws SQLException{
-        Connection connection = UIutility.getConnection();
+        Connection connection = jdbcConnection.getConnection();
         String sqlQuery = "SELECT password, roleid, userid FROM users where username = ?";
 
         PreparedStatement statement = connection.prepareStatement(sqlQuery);

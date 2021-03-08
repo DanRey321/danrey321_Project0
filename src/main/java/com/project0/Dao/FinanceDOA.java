@@ -2,11 +2,8 @@ package com.project0.Dao;
 
 import com.project0.Util.CarArrayList;
 import com.project0.model.Offers;
-import com.project0.model.Cars;
-import com.project0.model.User;
-import com.project0.ui.UIutility;
+import com.project0.Util.jdbcConnection;
 
-import java.security.acl.Owner;
 import java.sql.*;
 
 
@@ -20,7 +17,7 @@ public class FinanceDOA {
 
         CarArrayList<Offers> offerList = new CarArrayList<>();
 
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sqlQuery);
 
@@ -51,7 +48,7 @@ public class FinanceDOA {
 
     public boolean makeOfferDOA( int userID, int carID, double offer){
 
-        try (Connection connection = UIutility.getConnection()) {
+        try (Connection connection = jdbcConnection.getConnection()) {
             connection.setAutoCommit(false);
 
             String sqlQuery = "insert into offers (userID, CarID, Offer)"
@@ -94,7 +91,7 @@ public class FinanceDOA {
         String sqlQuery = "delete from offers where offerid = ?";
 
 
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
 
             PreparedStatement stmt = connection.prepareStatement(sqlQuery);
 
@@ -117,7 +114,7 @@ public class FinanceDOA {
         String sqlQuery = "update cars set ownerid = ?"
                 + "where carid = ? ";
 
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
             connection.setAutoCommit(false);
 
             PreparedStatement pstmt= connection.prepareStatement(sqlQuery);
@@ -143,7 +140,7 @@ public class FinanceDOA {
         String sqlQuery = "update offers set status = 'Accepted'" +
                 "where offerid = ? ";
 
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
             connection.setAutoCommit(false);
 
             PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
@@ -169,7 +166,7 @@ public class FinanceDOA {
         System.out.println(carID);
         String sqlQuery = "delete from offers where carid = ? and status = 'Pending'";
 
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
             //connection.setAutoCommit(false);
 
             PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
@@ -190,12 +187,12 @@ public class FinanceDOA {
         return null;
     }
 
-    //TODO:Getting wrong userID from query
+
     public Offers getOffer(int offerID){
         String sqlQuery = "select * from offers where offerid = ? ";
 
 
-        try (Connection connection = UIutility.getConnection()) {
+        try (Connection connection = jdbcConnection.getConnection()) {
 
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setInt(1, offerID);

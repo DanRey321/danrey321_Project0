@@ -3,7 +3,7 @@ package com.project0.Dao;
 import com.project0.Util.CarArrayList;
 
 import com.project0.model.Cars;
-import com.project0.ui.UIutility;
+import com.project0.Util.jdbcConnection;
 
 import java.sql.*;
 
@@ -15,7 +15,7 @@ public class CarDOA {
 
         CarArrayList<Cars> carsList = new CarArrayList<>();
 
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sqlQuery);
 
@@ -49,7 +49,7 @@ public class CarDOA {
         String sqlQuery = "insert into cars (OwnerID, Make, Model, Year, cost, Balance)"
                 + "values (?, ?, ?, ?, ?, ?)";
 
-        try(Connection connection = UIutility.getConnection()){
+        try(Connection connection = jdbcConnection.getConnection()){
             connection.setAutoCommit(false);
             PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
             pstmt.setInt(1, ownerID);
@@ -72,7 +72,7 @@ public class CarDOA {
     }
 
     public boolean removeCarDOA(int carID) {
-        try (Connection connection = UIutility.getConnection()) {
+        try (Connection connection = jdbcConnection.getConnection()) {
             String sqlQuery = "DELETE FROM cars WHERE carid = ?";
 
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
@@ -94,7 +94,7 @@ public class CarDOA {
         CarArrayList<Cars> carsList = new CarArrayList<>();
         String sqlQuery = "select make, model, year from cars where ownerid = ?";
 
-        try(Connection  connection = UIutility.getConnection()){
+        try(Connection  connection = jdbcConnection.getConnection()){
             PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
             pstmt.setInt(1, ownerID);
             ResultSet rs = pstmt.executeQuery();

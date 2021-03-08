@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class DisplayMenu extends AbstractMenu {
 
     UserDOA user = new UserDOA();
-    //User user1 = new User();
     FinanceDOA offers = new FinanceDOA();
     String username = "";
 
@@ -214,11 +213,6 @@ public class DisplayMenu extends AbstractMenu {
             offerID = scan.nextInt();
             offers.declineOffer(offerID);
         }
-
-
-        System.out.println();
-
-
 
 
     }

@@ -1,4 +1,4 @@
-package com.project0.ui;
+package com.project0.Util;
 
 import java.util.Scanner;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.*;
 import org.postgresql.Driver;
 
 
-public class UIutility {
+public class jdbcConnection {
 
     public static Connection getConnection() throws SQLException{
 
