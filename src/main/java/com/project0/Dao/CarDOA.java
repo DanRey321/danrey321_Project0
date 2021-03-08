@@ -1,6 +1,6 @@
 package com.project0.Dao;
 
-import com.project0.Util.CarArrayList;
+import com.project0.Util.DansArrayList;
 
 import com.project0.model.Cars;
 import com.project0.Util.jdbcConnection;
@@ -9,11 +9,11 @@ import java.sql.*;
 
 public class CarDOA {
 
-    public CarArrayList<Cars> getAllCars(){
+    public DansArrayList<Cars> getAllCars(){
 
         String sqlQuery = "SELECT * FROM cars";
 
-        CarArrayList<Cars> carsList = new CarArrayList<>();
+        DansArrayList<Cars> carsList = new DansArrayList<>();
 
         try(Connection connection = jdbcConnection.getConnection()){
             Statement stmt = connection.createStatement();
@@ -91,7 +91,7 @@ public class CarDOA {
     }
 
     public Cars viewOwnedCars(int ownerID){
-        CarArrayList<Cars> carsList = new CarArrayList<>();
+        DansArrayList<Cars> carsList = new DansArrayList<>();
         String sqlQuery = "select make, model, year from cars where ownerid = ?";
 
         try(Connection  connection = jdbcConnection.getConnection()){

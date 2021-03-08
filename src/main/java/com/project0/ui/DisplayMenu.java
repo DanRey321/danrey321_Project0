@@ -1,9 +1,11 @@
 package com.project0.ui;
 import com.project0.Dao.CarDOA;
 import com.project0.Dao.FinanceDOA;
+import com.project0.Dao.PaymentDOA;
 import com.project0.Dao.UserDOA;
 import com.project0.model.Cars;
 import com.project0.model.Offers;
+import com.project0.model.Payments;
 import com.project0.model.User;
 
 import java.sql.SQLException;
@@ -15,6 +17,7 @@ public class DisplayMenu extends AbstractMenu {
 
     UserDOA user = new UserDOA();
     FinanceDOA offers = new FinanceDOA();
+    Payments payment = new Payments();
     String username = "";
 
     @Override
@@ -38,6 +41,7 @@ public class DisplayMenu extends AbstractMenu {
 
         boolean loop = true;
         CarDOA cars = new CarDOA();
+        PaymentDOA paymentDOA = new PaymentDOA();
         FinanceDOA offers = new FinanceDOA();
         int carID;
 
@@ -74,7 +78,7 @@ public class DisplayMenu extends AbstractMenu {
                     break;
                 case 4:
                     System.out.println("Payments");
-                    //loop = false;
+                    paymentDOA.viewAllPayments();
                     break;
                 case 5:
                     System.out.println("Accept or Decline Offers");

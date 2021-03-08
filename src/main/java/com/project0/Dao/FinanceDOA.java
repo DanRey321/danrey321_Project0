@@ -1,6 +1,6 @@
 package com.project0.Dao;
 
-import com.project0.Util.CarArrayList;
+import com.project0.Util.DansArrayList;
 import com.project0.model.Offers;
 import com.project0.Util.jdbcConnection;
 
@@ -11,11 +11,11 @@ import java.sql.*;
 public class FinanceDOA {
 
 
-    public CarArrayList<Offers> ViewOffers(){
+    public DansArrayList<Offers> ViewOffers(){
 
         String sqlQuery = "SELECT * FROM offers";
 
-        CarArrayList<Offers> offerList = new CarArrayList<>();
+        DansArrayList<Offers> offerList = new DansArrayList<>();
 
         try(Connection connection = jdbcConnection.getConnection()){
             Statement stmt = connection.createStatement();
