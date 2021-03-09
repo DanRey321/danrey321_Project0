@@ -3,6 +3,7 @@ package com.project0.Dao;
 import com.project0.Util.DansArrayList;
 import com.project0.model.Offers;
 import com.project0.Util.jdbcConnection;
+import com.project0.model.Payments;
 
 import java.sql.*;
 
@@ -214,6 +215,39 @@ public class FinanceDOA {
             e.printStackTrace();
             return null;
         }
+        return null;
+    }
+
+    public Payments createPlan(int ownerID, int carID, double Balance){
+
+
+        double payment;
+        int monthsPaid = 1;
+
+        payment = Balance / 12;
+
+        System.out.println(ownerID + " " + carID + payment + " " + (Balance - payment) + " " + monthsPaid);
+
+        String sqlQuery = "insert into payments (userid, carid, payment, remainingBalance, monthsPaid ) " +
+                "values (?, ?, ?, ?, ?)";
+
+        try(Connection connection = jdbcConnection.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            statement.setInt(1,ownerID);
+            statement.setInt(2, carID);
+            statement.setDouble(3, payment);
+            statement.setDouble(4, (Balance - payment));
+            statement.setInt(5, monthsPaid);
+
+            if (statement.executeUpdate() < 1) {
+                throw new SQLException("Insert Failed, no rows were affected");
+            }
+
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
         return null;
     }
 

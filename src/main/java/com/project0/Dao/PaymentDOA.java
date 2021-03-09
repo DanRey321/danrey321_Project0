@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class PaymentDOA {
 
-    public String viewRemainingBalance(int userID, int carID){
+    public String createPaymentPlan(int userID, int carID){
 
 
         return null;
@@ -27,20 +27,20 @@ public class PaymentDOA {
             ResultSet rs = stmt.executeQuery(sqlQuery);
 
             while(rs.next()){
-                int paymentID = rs.getInt(1);
-                int userID = rs.getInt(2);
-                int carID = rs.getInt(3);
-                double payment = rs.getDouble(4);
+                int userID = rs.getInt(1);
+                int carID = rs.getInt(2);
+                double payment = rs.getDouble(3);
+                double remaining = rs.getDouble(4);
+                int month = rs.getInt(5);
 
-                Payments payments = new Payments(paymentID, userID, carID, payment);
+                Payments payments = new Payments(userID, carID, payment, remaining, month);
                 paymentList.addPayment(payments);
             }
 
             System.out.println("Payment ID ------------------Payment");
             for(int i = 0; i < paymentList.sizeOfPaymentList(); i++){
-                System.out.println(paymentList.getPayment(i).getPaymentID() + " - "
+                System.out.println(paymentList.getPayment(i).getUserID() + " - "
                         + paymentList.getPayment(i).getPayment());
-
 
             }
 

@@ -210,6 +210,7 @@ public class DisplayMenu extends AbstractMenu {
             offers.updateOfferStatus(offerID);
             offers.updateOwner(offerA.getUserID(), offerA.getCarID());
             offers.deleteRemainingOffers(offerA.getCarID());
+            offers.createPlan(offerA.getUserID(),offerA.getCarID(),offerA.getOffer());
 
         }
         else if(AorD.equals("d") || AorD.equals("D")){

@@ -1,27 +1,21 @@
 package com.project0.model;
 
 public class Payments {
-    private int paymentID;
-    private int userID;
-    private int carID;
-    private double payment;
+   private int userID;
+   private int carID;
+   private double payment;
+   private double remainingBalance;
+   private int monthsPaid;
 
-    public Payments() {
-    }
-
-    public Payments(int paymentID, int userID, int carID, double payment) {
-        this.paymentID = paymentID;
+    public Payments(int userID, int carID, double payment, double remainingBalance, int monthsPaid) {
         this.userID = userID;
         this.carID = carID;
         this.payment = payment;
+        this.remainingBalance = remainingBalance;
+        this.monthsPaid = monthsPaid;
     }
 
-    public int getPaymentID() {
-        return paymentID;
-    }
-
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
+    public Payments() {
     }
 
     public int getUserID() {
@@ -46,5 +40,21 @@ public class Payments {
 
     public void setPayment(double payment) {
         this.payment = payment;
+    }
+
+    public double getRemainingBalance() {
+        return remainingBalance;
+    }
+
+    public void setRemainingBalance(double remainingBalance) {
+        this.remainingBalance = remainingBalance;
+    }
+
+    public int getMonthsPaid() {
+        return monthsPaid;
+    }
+
+    public void setMonthsPaid(int monthsPaid) {
+        this.monthsPaid = monthsPaid;
     }
 }

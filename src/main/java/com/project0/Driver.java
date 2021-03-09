@@ -4,6 +4,7 @@ import com.project0.Dao.CarDOA;
 import com.project0.Dao.UserDOA;
 import com.project0.model.User;
 import com.project0.ui.DisplayMenu;
+import com.project0.ui.signUpMenu;
 
 import java.util.Scanner;
 
@@ -15,6 +16,7 @@ public class Driver {
         int choice;
         User isUser = new User();
         DisplayMenu menu = new DisplayMenu();
+        signUpMenu smenu = new signUpMenu();
 
 
         do{
@@ -43,7 +45,8 @@ public class Driver {
                     break;
                 case 2:
                     System.out.println("Signing up");
-                    menuLoop = false;
+                    smenu.signUp(scan);
+                    //menuLoop = false;
                     break;
                 case 3:
                     System.out.println("Come again");
