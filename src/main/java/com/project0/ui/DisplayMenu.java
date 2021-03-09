@@ -18,6 +18,7 @@ public class DisplayMenu extends AbstractMenu {
     UserDOA user = new UserDOA();
     FinanceDOA offers = new FinanceDOA();
     Payments payment = new Payments();
+    PaymentDOA paymentDOA = new PaymentDOA();
     String username = "";
 
     @Override
@@ -114,7 +115,7 @@ public class DisplayMenu extends AbstractMenu {
             System.out.println("1: View Cars");
             System.out.println("2: Make an Offer");
             System.out.println("3: My Cars");
-            System.out.println("4: Balance");
+            System.out.println("4: Pay Balance");
             System.out.println("5: Exit");
 
             int choice = scan.nextInt();
@@ -137,7 +138,10 @@ public class DisplayMenu extends AbstractMenu {
                     //loop = false;
                     break;
                 case 4:
-                    System.out.println("Finance");
+                    System.out.println("Paying Monthly Balance: ");
+                    Payments paymentsView = paymentDOA.viewPayment(userCM.getUserID());
+                    paymentDOA.paymentUpdate(paymentsView.getUserID(), paymentsView.getCarID(),
+                            paymentsView.getMonthsPaid(),paymentsView.getPayment() ,paymentsView.getRemainingBalance());
                     //loop = false;
                     break;
                 case 5:
@@ -218,6 +222,15 @@ public class DisplayMenu extends AbstractMenu {
             offerID = scan.nextInt();
             offers.declineOffer(offerID);
         }
+
+
+    }
+
+    public Payments viewPayment(User UserP){
+
+        Payments paymentsView = paymentDOA.viewPayment(UserP.getUserID());
+
+        return paymentsView;
 
 
     }
