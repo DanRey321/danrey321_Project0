@@ -186,6 +186,7 @@ public class DisplayMenu extends AbstractMenu {
                             paymentsView.getMonthsPaid(),paymentsView.getPayment() ,paymentsView.getRemainingBalance());
                     //paymentDOA.paymentUpdate(paymentsView.getUserID(), paymentsView.getCarID(),
                             //paymentsView.getMonthsPaid(),paymentsView.getPayment() ,paymentsView.getRemainingBalance());
+                    paymentService.viewPayment(paymentsView.getUserID());
                     //loop = false;
                     break;
                 case 5:

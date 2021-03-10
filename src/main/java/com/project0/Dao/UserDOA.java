@@ -80,6 +80,7 @@ public class UserDOA {
             int roleID = rs.getInt(2);
             int userid = rs.getInt(3);
 
+
             User user = new User(userid, roleID, databasePassword, username);
 
 

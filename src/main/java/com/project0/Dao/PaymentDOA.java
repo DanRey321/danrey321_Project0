@@ -36,7 +36,7 @@ public class PaymentDOA {
                 paymentList.addPayment(payments);
             }
 
-            System.out.println("Payment ID ------------------Payment");
+            //System.out.println("Payment ID ------------------Payment");
             for(int i = 0; i < paymentList.sizeOfPaymentList(); i++){
                 //System.out.println(paymentList.getPayment(i).getUserID() + " - "
                       //  + paymentList.getPayment(i).getPayment());

@@ -113,7 +113,7 @@ public class FinanceDOA {
     }
 
     public Cars updateOwner(int ownerID, int carID){
-        System.out.println(ownerID + "Owner and car " + carID);
+        //System.out.println(ownerID + "Owner and car " + carID);
         String sqlQuery = "update cars set ownerid = ?"
                 + "where carid = ? ";
 
@@ -140,7 +140,7 @@ public class FinanceDOA {
     }
 
     public Offers updateOfferStatus(int offerID){
-        System.out.println(offerID + "Helloooooooo");
+        //System.out.println(offerID + "Helloooooooo");
         String sqlQuery = "update offers set status = 'Accepted'" +
                 "where offerid = ? ";
 
@@ -165,7 +165,7 @@ public class FinanceDOA {
     }
 
     public Offers updateOfferStatus2(int offerid){
-        System.out.println(offerid + "Helloooooooo");
+        //System.out.println(offerid + "Helloooooooo");
         String sqlQuery = "select status_change(?)";
         try(Connection connection = jdbcConnection.getConnection()){
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
