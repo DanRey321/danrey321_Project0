@@ -48,4 +48,14 @@ public class Offers {
     public void setOffer(int offer) {
         this.offer = offer;
     }
+
+    @Override
+    public String toString() {
+        return "Offers{" +
+                "offerID=" + offerID +
+                ", userID=" + userID +
+                ", carID=" + carID +
+                ", offer=" + offer +
+                '}';
+    }
 }

@@ -1,16 +1,21 @@
 package com.project0;
 
+import com.enterprise.EnterpriseNoAppropriateConstructorFoundException;
+import com.enterprise.model.MetaTestData;
+import com.enterprise.util.HashMap;
+import com.enterprise.util.TestDiscovery;
 import com.project0.Dao.CarDOA;
 import com.project0.Dao.UserDOA;
 import com.project0.model.User;
 import com.project0.ui.DisplayMenu;
 import com.project0.ui.signUpMenu;
 
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class Driver {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws EnterpriseNoAppropriateConstructorFoundException {
         System.out.println("Welcome!!!!");
         Scanner scan = new Scanner(System.in);
         boolean menuLoop = true;
@@ -24,7 +29,8 @@ public class Driver {
             System.out.println("Select an option: ");
             System.out.println("1: Log In");
             System.out.println("2: Sign up");
-            System.out.println("3: Exit");
+            System.out.println("3 Run Test");
+            System.out.println("4: Exit");
 
             choice = scan.nextInt();
             scan.nextLine();
@@ -50,7 +56,12 @@ public class Driver {
                     //menuLoop = false;
                     break;
                 case 3:
-                    System.out.println("Come again");
+                    System.out.println("Test");
+                    menu.Testclass();
+                    menuLoop = false;
+                    break;
+                case 4:
+                    System.out.println("Exit");
                     menuLoop = false;
                     break;
                 default:

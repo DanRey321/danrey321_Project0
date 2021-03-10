@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.enterprise.annotations.TestClass;
+import com.enterprise.annotations.TestMethod;
 import com.project0.model.User;
 import com.project0.Util.jdbcConnection;
 
-
+@TestClass
 public class UserDOA {
 
     public boolean deleteUserDAO(String Name){
@@ -97,13 +99,29 @@ public class UserDOA {
     }
 
 
+    @TestMethod(name = "test1",expected = "Daniel")
+    public String testUserName(){
 
-    public int AccessLevel(){
+        String sqlQuery = "Select fname from users where userid = 100";
+        String name = null;
+
+        try(Connection connection = jdbcConnection.getConnection()){
+            PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
+            //pstmt.setInt(1, userID);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                name = rs.getString(1);
+            }
 
 
 
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
 
-        return 0;
+        System.out.println(name);
+        return name;
     }
 
 

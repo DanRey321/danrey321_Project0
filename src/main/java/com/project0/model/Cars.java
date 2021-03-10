@@ -71,7 +71,14 @@ public class Cars {
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "carID= " + carID +
+                ", make=' " + make + '\'' +
+                ", model=' " + model + '\'' +
+                ", year=' " + year + '\'' +
+                ", cost= " + cost +
+                '}';
+    }
 }

@@ -1,5 +1,9 @@
 package com.project0.ui;
+import com.enterprise.annotations.TestClass;
 import com.enterprise.annotations.TestMethod;
+import com.enterprise.model.MetaTestData;
+import com.enterprise.util.HashMap;
+import com.enterprise.util.TestDiscovery;
 import com.project0.Dao.CarDOA;
 import com.project0.Dao.FinanceDOA;
 import com.project0.Dao.PaymentDOA;
@@ -9,11 +13,12 @@ import com.project0.model.Offers;
 import com.project0.model.Payments;
 import com.project0.model.User;
 
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 
-
+@TestClass
 public class DisplayMenu extends AbstractMenu {
 
     UserDOA user = new UserDOA();
@@ -102,7 +107,7 @@ public class DisplayMenu extends AbstractMenu {
         }while(loop);
 
     }
-    @TestMethod
+
     public void CustomerMenu(Scanner scan, User userCM){
 
         boolean loop = true;
@@ -233,6 +238,23 @@ public class DisplayMenu extends AbstractMenu {
         Payments paymentsView = paymentDOA.viewPayment(UserP.getUserID());
 
         return paymentsView;
+
+
+    }
+
+   //@TestMethod(name = "test1",expected = "Daniel")
+    public void Testclass(){
+        HashMap<Method, MetaTestData> resultmap = null;
+        try {
+            resultmap = new TestDiscovery().runAndStoreTestInformation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(resultmap);
+        //System.out.println("Enter UserID");
+        //int userID = scan.nextInt();
+        //return "Daniel";
 
 
     }

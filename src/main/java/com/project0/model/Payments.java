@@ -57,4 +57,15 @@ public class Payments {
     public void setMonthsPaid(int monthsPaid) {
         this.monthsPaid = monthsPaid;
     }
+
+    @Override
+    public String toString() {
+        return "Payments{" +
+                "userID=" + userID +
+                ", carID=" + carID +
+                ", payment=" + payment +
+                ", remainingBalance=" + remainingBalance +
+                ", monthsPaid=" + monthsPaid +
+                '}';
+    }
 }
