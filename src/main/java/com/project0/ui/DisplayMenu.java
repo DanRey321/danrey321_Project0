@@ -1,4 +1,5 @@
 package com.project0.ui;
+import com.enterprise.annotations.TestMethod;
 import com.project0.Dao.CarDOA;
 import com.project0.Dao.FinanceDOA;
 import com.project0.Dao.PaymentDOA;
@@ -101,7 +102,7 @@ public class DisplayMenu extends AbstractMenu {
         }while(loop);
 
     }
-
+    @TestMethod
     public void CustomerMenu(Scanner scan, User userCM){
 
         boolean loop = true;
@@ -211,7 +212,8 @@ public class DisplayMenu extends AbstractMenu {
             offerID = scan.nextInt();
             scan.nextLine();
             offerA = offers.getOffer(offerID);
-            offers.updateOfferStatus(offerID);
+            offers.updateOfferStatus2(offerID);
+            //offers.updateOfferStatus(offerID);
             offers.updateOwner(offerA.getUserID(), offerA.getCarID());
             offers.deleteRemainingOffers(offerA.getCarID());
             offers.createPlan(offerA.getUserID(),offerA.getCarID(),offerA.getOffer());

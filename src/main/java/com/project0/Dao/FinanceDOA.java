@@ -138,6 +138,7 @@ public class FinanceDOA {
     }
 
     public Offers updateOfferStatus(int offerID){
+        System.out.println(offerID + "Helloooooooo");
         String sqlQuery = "update offers set status = 'Accepted'" +
                 "where offerid = ? ";
 
@@ -158,8 +159,24 @@ public class FinanceDOA {
             e.printStackTrace();
         }
 
-
         return null;
+    }
+
+    public void updateOfferStatus2(int offerid){
+        System.out.println(offerid + "Helloooooooo");
+        String sqlQuery = "select status_change(?)";
+        try(Connection connection = jdbcConnection.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            statement.setInt(1, offerid);
+
+            statement.execute();
+            statement.close();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+
     }
 
     public Offers deleteRemainingOffers(int carID){

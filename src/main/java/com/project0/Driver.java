@@ -9,6 +9,7 @@ import com.project0.ui.signUpMenu;
 import java.util.Scanner;
 
 public class Driver {
+
     public static void main(String[] args){
         System.out.println("Welcome!!!!");
         Scanner scan = new Scanner(System.in);
