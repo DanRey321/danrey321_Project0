@@ -29,7 +29,7 @@ public class Driver {
             System.out.println("Select an option: ");
             System.out.println("1: Log In");
             System.out.println("2: Sign up");
-            System.out.println("3 Run Test");
+            System.out.println("3: Run Test");
             System.out.println("4: Exit");
 
             choice = scan.nextInt();

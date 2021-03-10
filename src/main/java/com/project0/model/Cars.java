@@ -2,13 +2,14 @@ package com.project0.model;
 
 public class Cars {
 
+    private int userID;
     private int carID;
     private String make;
     private String model;
     private String year;
     private double cost;
 
-    public Cars(int carID, String make, String model, String year, double cost) {
+    public Cars(int userID, int carID, String make, String model, String year, double cost) {
         this.carID = carID;
         this.make = make;
         this.model = model;
@@ -18,7 +19,6 @@ public class Cars {
     }
 
     public Cars() {
-        this.carID = carID;
         this.cost = 0;
 
     }
@@ -29,6 +29,13 @@ public class Cars {
         this.year = year;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     public int getCarID() {
         return carID;
@@ -73,12 +80,11 @@ public class Cars {
 
     @Override
     public String toString() {
-        return "Cars{" +
-                "carID= " + carID +
-                ", make=' " + make + '\'' +
-                ", model=' " + model + '\'' +
-                ", year=' " + year + '\'' +
-                ", cost= " + cost +
-                '}';
+        return "carID= " + carID +
+                ",   make=' " + make + '\'' +
+                ",   model=' " + model + '\'' +
+                ",   year=' " + year + '\'' +
+                ",   cost= " + cost
+                + '\'' + '\'' ;
     }
 }

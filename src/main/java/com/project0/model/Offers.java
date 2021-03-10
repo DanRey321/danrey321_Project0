@@ -6,15 +6,29 @@ public class Offers {
     private int userID;
     private int carID;
     private double offer;
+    private String status;
 
     public Offers() {
     }
 
-    public Offers(int offerID, int userID, int carID, double offer) {
+    public Offers(int offerID, int userID, int carID, double offer, String status) {
         this.offerID = offerID;
         this.userID = userID;
         this.carID = carID;
         this.offer = offer;
+        this.status = status;
+    }
+
+    public void setOffer(double offer) {
+        this.offer = offer;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getOfferID() {
@@ -51,11 +65,10 @@ public class Offers {
 
     @Override
     public String toString() {
-        return "Offers{" +
-                "offerID=" + offerID +
-                ", userID=" + userID +
-                ", carID=" + carID +
-                ", offer=" + offer +
-                '}';
+        return "     offerID= " + offerID +
+                ",   userID= " + userID +
+                ",   carID= " + carID +
+                ",   offer= " + offer +
+                ",   status= " + status;
     }
 }

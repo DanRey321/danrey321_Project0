@@ -1,6 +1,7 @@
 package com.project0.Dao;
 
 import com.project0.Util.DansArrayList;
+import com.project0.model.Cars;
 import com.project0.model.Offers;
 import com.project0.model.Payments;
 import com.project0.Util.jdbcConnection;
@@ -15,7 +16,7 @@ public class PaymentDOA {
         return null;
     }
 
-    public Payments viewAllPayments(){
+    public DansArrayList<Payments> viewAllPayments(){
 
         String sqlQuery = "select * from payments";
         DansArrayList<Payments> paymentList = new DansArrayList<>();
@@ -37,8 +38,9 @@ public class PaymentDOA {
 
             System.out.println("Payment ID ------------------Payment");
             for(int i = 0; i < paymentList.sizeOfPaymentList(); i++){
-                System.out.println(paymentList.getPayment(i).getUserID() + " - "
-                        + paymentList.getPayment(i).getPayment());
+                //System.out.println(paymentList.getPayment(i).getUserID() + " - "
+                      //  + paymentList.getPayment(i).getPayment());
+                System.out.println(paymentList.getPayment(i).toString());
 
             }
 

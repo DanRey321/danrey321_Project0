@@ -14,7 +14,7 @@ import com.project0.Util.jdbcConnection;
 @TestClass
 public class UserDOA {
 
-    public boolean deleteUserDAO(String Name){
+    public User deleteUserDAO(String Name){
         try(Connection connection = jdbcConnection.getConnection()){
             String sqlQuery = "DELETE FROM users WHERE UserName = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
@@ -24,13 +24,13 @@ public class UserDOA {
             }
         }catch(SQLException e){
             e.printStackTrace();
-            return false;
+            return null;
         }
 
-        return true;
+        return null;
     }
 
-    public boolean AddUserDAO(int role, String firstName, String lastName, String username, String password){
+    public User AddUserDAO(int role, String firstName, String lastName, String username, String password){
 
         try (Connection connection = jdbcConnection.getConnection()) {
             connection.setAutoCommit(false);
@@ -65,7 +65,7 @@ public class UserDOA {
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
     public User LoginDOA(String username, String password) throws SQLException{

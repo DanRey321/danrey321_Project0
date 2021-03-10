@@ -11,7 +11,7 @@ public class CarDOA {
 
     public DansArrayList<Cars> getAllCars(){
 
-        String sqlQuery = "SELECT * FROM cars";
+        String sqlQuery = "SELECT * FROM cars where ownerid = 100";
 
         DansArrayList<Cars> carsList = new DansArrayList<>();
 
@@ -28,12 +28,12 @@ public class CarDOA {
                 double cost = rs.getDouble(6);
                 double balance = rs.getDouble(7);
 
-                Cars cars = new Cars(carID, make, model, year, cost);
+                Cars cars = new Cars(ownerID,carID, make, model, year, cost);
                 carsList.add(cars);
             }
             for(int i = 0; i < carsList.size(); i++){
-                System.out.println(carsList.getCar(i).getMake() + " - " + carsList.getCar(i).getModel());
-
+                //System.out.println(carsList.getCar(i).getMake() + " - " + carsList.getCar(i).getModel());
+                System.out.println(carsList.getCar(i).toString());
 
             }
 
@@ -71,7 +71,7 @@ public class CarDOA {
         return null;
     }
 
-    public boolean removeCarDOA(int carID) {
+    public Cars removeCarDOA(int carID) {
         try (Connection connection = jdbcConnection.getConnection()) {
             String sqlQuery = "DELETE FROM cars WHERE carid = ?";
 
@@ -84,13 +84,13 @@ public class CarDOA {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        return null;
 
     }
 
-    public Cars viewOwnedCars(int ownerID){
+    public DansArrayList<Cars> viewOwnedCars(int ownerID){
         DansArrayList<Cars> carsList = new DansArrayList<>();
         String sqlQuery = "select make, model, year from cars where ownerid = ?";
 

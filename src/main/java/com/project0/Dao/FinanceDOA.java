@@ -1,6 +1,7 @@
 package com.project0.Dao;
 
 import com.project0.Util.DansArrayList;
+import com.project0.model.Cars;
 import com.project0.model.Offers;
 import com.project0.Util.jdbcConnection;
 import com.project0.model.Payments;
@@ -27,16 +28,17 @@ public class FinanceDOA {
                 int userid = rs.getInt(2);
                 int carID = rs.getInt(3);
                 double offer = rs.getDouble(4);
+                String status = rs.getString(5);
 
-                Offers offers = new Offers(offerID, userid, carID, offer);
+                Offers offers = new Offers(offerID, userid, carID, offer, status);
                 offerList.addOffer(offers);
                 //arsList.add(cars);
 
             }
             for(int i = 0; i < offerList.sizeOfOfferList(); i++){
-                System.out.println(offerList.getOffer(i).getOfferID() + " - " + offerList.getOffer(i).getCarID() + " - "
-                        + offerList.getOffer(i).getOffer() );
-
+                //System.out.println(offerList.getOffer(i).getOfferID() + " - " + offerList.getOffer(i).getCarID() + " - "
+                       // + offerList.getOffer(i).getOffer() );
+                System.out.println(offerList.getOffer(i).toString());
 
             }
 
@@ -47,7 +49,7 @@ public class FinanceDOA {
         return offerList;
     }
 
-    public boolean makeOfferDOA( int userID, int carID, double offer){
+    public Offers makeOfferDOA( int userID, int carID, double offer){
 
         try (Connection connection = jdbcConnection.getConnection()) {
             connection.setAutoCommit(false);
@@ -81,7 +83,7 @@ public class FinanceDOA {
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
 
@@ -110,7 +112,7 @@ public class FinanceDOA {
         return null;
     }
 
-    public void updateOwner(int ownerID, int carID){
+    public Cars updateOwner(int ownerID, int carID){
         System.out.println(ownerID + "Owner and car " + carID);
         String sqlQuery = "update cars set ownerid = ?"
                 + "where carid = ? ";
@@ -134,7 +136,7 @@ public class FinanceDOA {
         }
 
 
-
+        return null;
     }
 
     public Offers updateOfferStatus(int offerID){
@@ -162,7 +164,7 @@ public class FinanceDOA {
         return null;
     }
 
-    public void updateOfferStatus2(int offerid){
+    public Offers updateOfferStatus2(int offerid){
         System.out.println(offerid + "Helloooooooo");
         String sqlQuery = "select status_change(?)";
         try(Connection connection = jdbcConnection.getConnection()){
@@ -176,7 +178,7 @@ public class FinanceDOA {
             e.printStackTrace();
         }
 
-
+    return null;
     }
 
     public Offers deleteRemainingOffers(int carID){
@@ -220,12 +222,12 @@ public class FinanceDOA {
                 int userID = rs.getInt(2);
                 int carID = rs.getInt(3);
                 double offerAmount = rs.getDouble(4);
+                String status = rs.getString(5);
 
                 System.out.println(oID);
                 System.out.println(userID);
 
-                Offers offer = new Offers(oID, userID, carID, offerAmount);
-                return offer;
+                return new Offers(oID, userID, carID, offerAmount, status);
             }
 
         } catch (SQLException e) {
