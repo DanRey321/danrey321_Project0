@@ -1,19 +1,21 @@
 package com.project0;
 
 import com.enterprise.EnterpriseNoAppropriateConstructorFoundException;
-import com.enterprise.model.MetaTestData;
-import com.enterprise.util.HashMap;
-import com.enterprise.util.TestDiscovery;
-import com.project0.Dao.CarDOA;
-import com.project0.Dao.UserDOA;
+import com.project0.Test.UserTest;
 import com.project0.model.User;
 import com.project0.ui.DisplayMenu;
 import com.project0.ui.signUpMenu;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class Driver {
+    private static final Logger logger = LogManager.getLogger(Driver.class);
 
     public static void main(String[] args) throws EnterpriseNoAppropriateConstructorFoundException {
         System.out.println("Welcome!!!!");
@@ -23,6 +25,13 @@ public class Driver {
         User isUser = new User();
         DisplayMenu menu = new DisplayMenu();
         signUpMenu smenu = new signUpMenu();
+
+        logger.trace("We've just greeted the user!");
+        logger.debug("We've just greeted the user!");
+        logger.info("We've just greeted the user!");
+        logger.warn("We've just greeted the user!");
+        logger.error("We've just greeted the user!");
+        logger.fatal("We've just greeted the user!");
 
 
         do{
@@ -57,7 +66,11 @@ public class Driver {
                     break;
                 case 3:
                     System.out.println("Test");
-                    menu.Testclass();
+                    Result test = JUnitCore.runClasses(UserTest.class);
+                    for (Failure failure : test.getFailures()) {
+                        System.out.println(failure.toString());
+                    }
+                    //menu.Testclass();
                     menuLoop = false;
                     break;
                 case 4:

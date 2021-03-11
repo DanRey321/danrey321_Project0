@@ -101,7 +101,7 @@ public class UserDOA {
 
 
     @TestMethod(name = "test1",expected = "Daniel")
-    public String testUserName(){
+    public String testUserName0(){
 
         String sqlQuery = "Select fname from users where userid = 100";
         String name = null;
@@ -123,6 +123,36 @@ public class UserDOA {
 
         System.out.println(name);
         return name;
+    }
+    public User testUserName1(){
+
+        //User user = new User();
+
+        String sqlQuery = "Select * from users where userid = 100";
+        //String name = null;
+
+        try(Connection connection = jdbcConnection.getConnection()){
+            PreparedStatement pstmt = connection.prepareStatement(sqlQuery);
+            //pstmt.setInt(1, userID);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                int userid = rs.getInt(1);
+                int roleID = rs.getInt(2);
+                String username = rs.getString(5);
+                String password = rs.getString(6);
+                return new User(userid,roleID,username,password);
+            }
+
+
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        //System.out.println(name);
+        //return name;
+        return null;
     }
 
 
